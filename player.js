@@ -10,6 +10,13 @@ const player = document.getElementById('audio');
 const playbutton = document.getElementById('playbutton');
 const playbutton_icon = document.getElementById('play-pause');
 
+player.addEventListener('pause', (evt) => {
+    player.src = 'about:blank';
+    player.src = getRandomStreamId(stream_url);
+    player.load();
+    playbutton_icon.classList = "fa-solid fa-play";
+});
+
 // Add event listener to play button
 playbutton.addEventListener('click', (evt) => {
     if (player.paused) {
