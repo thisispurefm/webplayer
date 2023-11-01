@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<head>
+  <title>PureFM Web Player</title>
+  <link rel="stylesheet" href="index.css">
+  <script src="https://kit.fontawesome.com/bb487193c2.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div id="main-container">
+    <img id="main-logo" class="grid-item" src="assets/pure-logo.png">
+
+    <audio preload="metadata" id="audio">Your browser lacks support for JavaScript. Please use this link instead: [link here]</audio>
+
+    <section class="centre-controls grid-item">
+      <div class="playbutton" id="playbutton"><i class="fa-solid fa-play" id="play-pause"></i></div>
+    </section>
+
+    <section class="bottom-controls grid-item">
+      <i class="fa-solid fa-volume-low"></i>
+      <input class="slider" title="Volume" id="volume-control" type="range" min="0" max="100" step="1" value="100" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)">
+      <i class="fa-solid fa-volume-high"></i>
+    </section>
+
+    <section class="socials">
+      <a href="https://www.thisispurefm.com/" target="_blank"><i class="fa-solid fa-globe"></i></a>
+      <a href="https://twitter.com/purefm_" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://instagram.com/purefm_" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+    </section>
+  </div>
+
+  <script src="player.js"></script>
+</body>
