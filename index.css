@@ -10,7 +10,7 @@
 
 body {
   min-width: 500px;
-  max-width: 500px;
+  max-width: 95vw;
   min-height: 615px;
   overflow: hidden;
   font-family: 'Noto Sans';
@@ -62,11 +62,11 @@ body {
   padding-top: 1vh;
   text-align: center;
   color: var(--pureBlack);
-  font-size: xx-large;
+  font-size: 5vh;
   vertical-align: middle;
 }
 
-a {
+.socials a {
   text-decoration: none;
   font-weight: bold;
   color: var(--pureBlack);
@@ -77,18 +77,18 @@ a {
   margin: 0 0.5em 0 0.5em;
   -webkit-appearance: none;
   appearance: none;
-  width: 25%;
-  height: 1vh;
+  width: 35%;
+  height: 0.75em;
   background: var(--pureBlue);
   outline: none;
-  border-radius: 0.5vh;
+  border-radius: 0.5em;
 }
 
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 2vh;
-  height: 2vh;
+  width: 1.5em;
+  height: 1.5em;
   background: var(--purePurple);
   outline: none;
   border-radius: 50%;
@@ -96,8 +96,8 @@ a {
 }
 
 .slider::-moz-range-thumb {
-  width: 2vh;
-  height: 2vh;
+  width: 1.5em;
+  height: 1.5em;
   background: var(--purePurple);
   outline: none;
   border-radius: 50%;
@@ -116,10 +116,10 @@ a {
   }
 
   .socials {
-    color: var(--pureWhite);
+    color: var(--pureBlue);
   }
 
-  a {
+  .socials a {
     color: var(--pureBlue);
   }
 }
@@ -135,5 +135,23 @@ a {
 
     font-size: 6vw;
     line-height: 15vw;
+  }
+
+  .socials {
+    font-size: xx-large;
+  }
+  
+  .slider {
+    height: 1vh
+  }
+  
+  .slider::--webkit-slider-thumb {
+    width: 2vh;
+    height: 2vh;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 2vh;
+    height: 2vh;
   }
 }

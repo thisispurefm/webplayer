@@ -38,6 +38,21 @@ function SetVolume(value) {
     localStorage.setItem("volume", value);
 }
 
+document.getElementById('share-button').addEventListener('click', async () => {
+    if (navigator.share) {
+        await navigator.share({
+            title: "PureFM Web Player",
+            text: "Listen to PureFM live now!",
+            url: "https://listen.thisispurefm.com/",
+        })
+        .then(() => console.log("Share successful"))
+        .catch((error) => console.log ("Failed to share - ", error));
+    } else {
+        console.log("navigator.share not supported, copying to clipboard");
+        navigator.clipboard.writeText("Listen to PureFM now at https://listen.thisispurefm.com/");
+    }
+});
+
 // Get the volume setting from localstorage, or 100% if not in there
 window.onload = function () {
     document.getElementById('volume-control').value = localStorage.getItem("volume") ?? 100;
