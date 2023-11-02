@@ -42,7 +42,8 @@ document.getElementById('share-button').addEventListener('click', async () => {
     if (navigator.share) {
         await navigator.share({
             title: "Listen to PureFM!",
-            text: "Listen to PureFM live now!\nhttps://thisispurefm.com/",
+            text: "Listen to PureFM live now!",
+            url: "https://listen.thisispurefm.com/",
         })
         .then(() => console.log("Share successful"))
         .catch((error) => console.log ("Failed to share - ", error));
