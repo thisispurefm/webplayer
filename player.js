@@ -1,10 +1,6 @@
 // URL for the MP3 stream source
-const stream_url = "https://solid2.streamupsolutions.com/proxy/wofsojak?mp=/;type=mp3";
+const stream_url = "http://178.79.172.167:8000/stream.mp3";
 
-// Prevent browser caching a few seconds when unpaused
-function getRandomStreamId(stream_url) {
-    return stream_url + '&' + Math.floor((Math.random() * 10000) + 1);
-}
 
 const player = document.getElementById('audio');
 const playbutton = document.getElementById('playbutton');
@@ -22,7 +18,7 @@ playbutton.addEventListener('click', (evt) => {
     if (player.paused) {
         player.src = 'about:blank'; // Reset the audio element
         player.pause();
-        player.src = getRandomStreamId(stream_url);
+        player.src = stream_url; // We don't need to fix the cache as icecast is less bad than shoutcast
         player.load();
         player.play();
         playbutton_icon.classList = "fa-solid fa-pause"
