@@ -1,5 +1,5 @@
 // URL for the MP3 stream source
-const stream_url = "https://icecast.hughtb.uk/stream";
+const stream_url = "https://icecast-test.purefm.xyz/stream";
 
 
 const player = document.getElementById('audio');
