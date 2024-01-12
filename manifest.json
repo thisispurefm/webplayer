@@ -1,6 +1,6 @@
 {
   "name": "PureFM Player",
-  "short_name": "PureFM",
+  "short_name": "PureFM Player",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
