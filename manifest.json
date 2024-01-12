@@ -1,0 +1,22 @@
+{
+  "name": "PureFM Player",
+  "short_name": "PureFM",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#121212",
+  "theme_color": "#912191",
+  "description": "PureFM's Radio Player",
+  "icons": [
+    {
+      "src": "assets/icon_512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon_192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 
 <head>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="assets/icon_512.png" />
   <title>PureFM Web Player</title>
   <link rel="stylesheet" href="index.css">
   <script src="https://kit.fontawesome.com/bb487193c2.js" crossorigin="anonymous"></script>
@@ -30,5 +32,13 @@
     </section>
   </div>
 
+  <script>
+    if('serviceWorker' in navigator){
+      console.log("Registering service worker");
+      navigator.serviceWorker.register('/service-worker.js');
+    } else {
+      console.log("Service worker is not supported");
+    }
+  </script>
   <script src="player.js"></script>
 </body>
