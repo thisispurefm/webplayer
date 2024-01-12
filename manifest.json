@@ -5,7 +5,7 @@
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#121212",
-  "theme_color": "#912191",
+  "theme_color": "#121212",
   "description": "PureFM's Radio Player",
   "icons": [
     {
