@@ -8,7 +8,7 @@ const playbutton_icon = document.getElementById('play-pause');
 
 player.addEventListener('pause', (evt) => {
     player.src = 'about:blank';
-    player.src = getRandomStreamId(stream_url);
+    player.src = stream_url;
     player.load();
     playbutton_icon.classList = "fa-solid fa-play";
 });
