@@ -24,7 +24,7 @@ body {
   height: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 5fr 1fr 1fr;
+  grid-template-rows: 12.5vh 40vh 20vh 15vh 12.5vh;
 }
 
 #main-logo {
@@ -49,6 +49,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.centre-text {
+  width: 100%;
+}
+
+.centre-text h4 {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: normal;
+  line-height: 1.3em;
 }
 
 .bottom-controls {

@@ -1,10 +1,16 @@
-// URL for the MP3 stream source
-const stream_url = "https://icecast-test.purefm.xyz/stream";
-
+// Settings to configure for your stream
+const server = "https://icecast-test.purefm.xyz/"; // Icecast2 Server URL
+const mountpoint = "stream"; // Mountpoint
+const status = "status-json.xsl"; // Status page (leave default for icecast 2.4.4)
+// const now_playing_placeholder = "The Portsmouth University Radio Experience"; // Placeholder text for the "Now Playing" text
+const now_playing_placeholder = "PureFM Test Broadcast"; // Placeholder text for the "Now Playing" text
 
 const player = document.getElementById('audio');
 const playbutton = document.getElementById('playbutton');
 const playbutton_icon = document.getElementById('play-pause');
+const now_playing_title = document.getElementById('now-playing-title');
+const stream_url = server + mountpoint;
+const stream_status_url = server + status;
 
 player.addEventListener('pause', (evt) => {
     player.src = 'about:blank';
@@ -29,9 +35,37 @@ playbutton.addEventListener('click', (evt) => {
     }
 });
 
-function SetVolume(value) {
+function setVolume(value) {
     document.getElementById('audio').volume = value / 100;
     localStorage.setItem("volume", value);
+}
+
+async function get(url) {
+    const response = await fetch(url);
+
+    if (response.status === 200) {
+        return response.json();
+    } else {
+        return "";
+    }
+}
+
+async function updateNowPlayingInfo() {
+    const icecast_status = await get(stream_status_url);
+
+    if (icecast_status === "") {
+        now_playing_title.innerText = now_playing_placeholder;
+    } else {
+        icecast_status.icestats.source.forEach((source) => {
+            if (source.listenurl.endsWith(mountpoint)) {
+                if (source.title === undefined || source.title === null || source.title === "") {
+                    now_playing_title.innerText = now_playing_placeholder;
+                } else {
+                    now_playing_title.innerText = source.title;
+                }
+            }
+        });
+    }
 }
 
 document.getElementById('share-button').addEventListener('click', async () => {
@@ -53,4 +87,12 @@ document.getElementById('share-button').addEventListener('click', async () => {
 window.onload = function () {
     document.getElementById('volume-control').value = localStorage.getItem("volume") ?? 100;
     document.getElementById('audio').volume = (localStorage.getItem("volume") ?? 100) / 100;
+    
+    player.innerHTML += `<a>${stream_url}</a>`;
+    
+    now_playing_title.innerText = now_playing_placeholder;
+
+    updateNowPlayingInfo();
+
+    setInterval(updateNowPlayingInfo, 5 * 1000);
 }
