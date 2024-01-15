@@ -1,7 +1,8 @@
 // Settings to configure for your stream
 const server = "https://icecast-test.purefm.xyz/"; // Icecast2 Server URL
 const mountpoint = "stream"; // Mountpoint
-const status = "status-json.xsl"; // Status page (leave default for icecast 2.4.4)
+const status = "status-json.xsl"; // Status page (leave default for icecast 2.4.4+)
+const station = "PureFM"; // Name of the radio station (Shows in MPRIS and windows media controls)
 // const now_playing_placeholder = "The Portsmouth University Radio Experience"; // Placeholder text for the "Now Playing" text
 const now_playing_placeholder = "PureFM Test Broadcast"; // Placeholder text for the "Now Playing" text
 
@@ -50,18 +51,31 @@ async function get(url) {
     }
 }
 
+function updateMediaSession(track) {
+    if ("mediaSession" in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: track,
+            artist: station,
+            artwork: [{ src: "assets/icon_512.png" }],
+        });
+    }
+}
+
 async function updateNowPlayingInfo() {
     const icecast_status = await get(stream_status_url);
 
     if (icecast_status === "") {
         now_playing_title.innerText = now_playing_placeholder;
+        updateMediaSession(now_playing_placeholder);
     } else {
         icecast_status.icestats.source.forEach((source) => {
             if (source.listenurl.endsWith(mountpoint)) {
                 if (source.title === undefined || source.title === null || source.title === "") {
                     now_playing_title.innerText = now_playing_placeholder;
+                    updateMediaSession(now_playing_placeholder);
                 } else {
                     now_playing_title.innerText = source.title;
+                    updateMediaSession(source.title);
                 }
             }
         });
