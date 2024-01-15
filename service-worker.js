@@ -1,6 +1,6 @@
 const CACHE_NAME = "PureFM-Player";
 
-let cahceResources = ["./", "./assets/"];
+let cacheResources = ["./", "./assets/"];
 
 self.addEventListener("install", e => {
   e.waitUntil(
