@@ -19,12 +19,6 @@ body {
   margin: auto;
 }
 
-#fs-button {
-  background: none;
-  border: none;
-  color: var(--pureBlack);
-}
-
 #main-container {
   margin: 1vw;
   padding: 0;
@@ -160,10 +154,6 @@ body {
     color: var(--pureWhite);
   }
 
-  #fs-button {
-    color: var(--pureWhite);
-  }
-
   .bottom-controls {
     border-top: 1px solid var(--pureWhite);
     border-bottom: 1px solid var(--pureWhite);
@@ -215,10 +205,6 @@ body {
     background: #121212;
     color: var(--pureWhite);
     max-width: 100%;
-  }
-
-  #fs-button {
-    color: var(--pureWhite);
   }
 
   #main-container {

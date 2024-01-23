@@ -98,16 +98,6 @@ async function updateNowPlayingInfo() {
     }
 }
 
-function toggleFullscreen() {
-    const body = document.querySelector("body");
-    
-    if (document.fullscreenElement) {
-        document.exitFullscreen();
-    } else {
-        body.requestFullscreen();
-    }
-}
-
 document.getElementById('share-button').addEventListener('click', async () => {
     if (navigator.share) {
         await navigator.share({
@@ -134,12 +124,3 @@ window.onload = function () {
 
     setInterval(updateNowPlayingInfo, 5 * 1000);
 }
-
-document.addEventListener('fullscreenchange', (event) => {
-    if (document.fullscreenElement) {
-        play();
-        fs_button.innerHTML = "<i class=\"fa-solid fa-compress\"></i>"
-    } else {
-        fs_button.innerHTML = "<i class=\"fa-solid fa-expand\"></i>";
-    }
-});
