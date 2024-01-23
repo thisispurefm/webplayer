@@ -9,9 +9,10 @@ const now_playing_placeholder = "PureFM Test Broadcast"; // Placeholder text for
 const player = document.getElementById('audio');
 const playbutton = document.getElementById('playbutton');
 const playbutton_icon = document.getElementById('play-pause');
-const now_playing_title = document.getElementById('now-playing-title');
+const now_playing_title = document.querySelectorAll('.now-playing-title');
 const stream_url = server + mountpoint;
 const stream_status_url = server + status;
+const fs_button = document.getElementById("fs-button");
 
 player.addEventListener('pause', (evt) => {
     player.src = 'about:blank';
@@ -23,18 +24,27 @@ player.addEventListener('pause', (evt) => {
 // Add event listener to play button
 playbutton.addEventListener('click', (evt) => {
     if (player.paused) {
-        player.src = 'about:blank'; // Reset the audio element
-        player.pause();
-        player.src = stream_url; // We don't need to fix the cache as icecast is less bad than shoutcast
-        player.load();
-        player.play();
+        play();
         playbutton_icon.classList = "fa-solid fa-pause"
     } else {
-        player.src = 'about:blank';
-        player.pause();
-        playbutton_icon.classList = "fa-solid fa-play"
+        pause();
     }
 });
+
+function play() {
+    player.src = 'about:blank'; // Reset the audio element
+    player.pause();
+    player.src = stream_url;
+    player.load();
+    player.play();
+    playbutton_icon.classList = "fa-solid fa-pause"
+}
+
+function pause() {
+    player.src = 'about:blank';
+    player.pause();
+    playbutton_icon.classList = "fa-solid fa-play"
+}
 
 function setVolume(value) {
     document.getElementById('audio').volume = value / 100;
@@ -65,20 +75,36 @@ async function updateNowPlayingInfo() {
     const icecast_status = await get(stream_status_url);
 
     if (icecast_status === "") {
-        now_playing_title.innerText = now_playing_placeholder;
+        now_playing_title.forEach((span) => {
+            span.innerText = now_playing_placeholder;
+        });
         updateMediaSession(now_playing_placeholder);
     } else {
         icecast_status.icestats.source.forEach((source) => {
             if (source.listenurl.endsWith(mountpoint)) {
                 if (source.title === undefined || source.title === null || source.title === "") {
-                    now_playing_title.innerText = now_playing_placeholder;
+                    now_playing_title.forEach((span) => {
+                        span.innerText = now_playing_placeholder;
+                    });
                     updateMediaSession(now_playing_placeholder);
                 } else {
-                    now_playing_title.innerText = source.title;
+                    now_playing_title.forEach((span) => {
+                        span.innerText = source.title;
+                    });
                     updateMediaSession(source.title);
                 }
             }
         });
+    }
+}
+
+function toggleFullscreen() {
+    const body = document.querySelector("body");
+    
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+    } else {
+        body.requestFullscreen();
     }
 }
 
@@ -102,11 +128,18 @@ window.onload = function () {
     document.getElementById('volume-control').value = localStorage.getItem("volume") ?? 100;
     document.getElementById('audio').volume = (localStorage.getItem("volume") ?? 100) / 100;
     
-    player.innerHTML += `<a>${stream_url}</a>`;
-    
     now_playing_title.innerText = now_playing_placeholder;
 
     updateNowPlayingInfo();
 
     setInterval(updateNowPlayingInfo, 5 * 1000);
 }
+
+document.addEventListener('fullscreenchange', (event) => {
+    if (document.fullscreenElement) {
+        play();
+        fs_button.innerHTML = "<i class=\"fa-solid fa-compress\"></i>"
+    } else {
+        fs_button.innerHTML = "<i class=\"fa-solid fa-expand\"></i>";
+    }
+});

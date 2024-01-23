@@ -9,17 +9,19 @@
 </head>
 
 <body>
+  <button id="fs-button" onclick="toggleFullscreen()"><i class="fa-solid fa-expand"></i></button>
+
   <div id="main-container">
     <img id="main-logo" class="grid-item" src="assets/pure-logo.png">
 
-    <audio preload="metadata" id="audio">Your browser lacks support for JavaScript. Please use this link instead: </audio>
+    <audio preload="metadata" id="audio">Your browser lacks support for JavaScript. Please use this link instead: <a href="https://icecast-test.purefm.xyz/stream">https://icecast-test.purefm.xyz/stream</a></audio>
 
     <section class="centre-controls grid-item">
       <div class="playbutton" id="playbutton"><i class="fa-solid fa-play" id="play-pause"></i></div>
     </section>
 
     <section class="centre-text grid-item">
-      <h4 id="now-playing-text">Now Playing: <span id="now-playing-title"></span></h4>
+      <h4 class="now-playing-text">Now Playing: <span class="now-playing-title"></span></h4>
     </section>
 
     <section class="bottom-controls grid-item">
@@ -33,6 +35,17 @@
       <a href="https://twitter.com/purefm_" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
       <a href="https://instagram.com/purefm_" target="_blank"><i class="fa-brands fa-instagram"></i></a>
       <a id="share-button"><i class="fa-solid fa-share-nodes"></i></a>
+    </section>
+  </div>
+
+  <div id="fullscreen-container">
+    <section>
+      <img class="large-logo" src="assets/icon_512.png">
+    </section>
+
+    <section>
+      <img class="text-logo" src="assets/pure-logo.png">
+      <h4 class="now-playing-text">Now Playing: <span class="now-playing-title"></span></h4>
     </section>
   </div>
 
