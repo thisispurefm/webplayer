@@ -35,13 +35,13 @@ body {
 
 #playbutton {
   background-color: var(--purePurple);
-  width: 25vw;
-  height: 25vw;
+  width: 35vw;
+  height: 35vw;
   border-radius: 50%;
 
   color: var(--pureWhite);
-  font-size: 12vw;
-  line-height: 25vw;
+  font-size: 16vw;
+  line-height: 35vw;
   text-align: center;
   user-select: none;
 }
