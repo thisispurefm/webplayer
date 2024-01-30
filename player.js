@@ -3,8 +3,7 @@ const server = "https://icecast-test.purefm.xyz/"; // Icecast2 Server URL
 const mountpoint = "stream"; // Mountpoint
 const status = "status-json.xsl"; // Status page (leave default for icecast 2.4.4+)
 const station = "PureFM"; // Name of the radio station (Shows in MPRIS and windows media controls)
-// const now_playing_placeholder = "The Portsmouth University Radio Experience"; // Placeholder text for the "Now Playing" text
-const now_playing_placeholder = "PureFM Test Broadcast"; // Placeholder text for the "Now Playing" text
+const now_playing_placeholder = "The Portsmouth University Radio Experience"; // Placeholder text for the "Now Playing" text
 
 const player = document.getElementById('audio');
 const playbutton = document.getElementById('playbutton');
